@@ -10,12 +10,12 @@ namespace libEDJournalMonitor
         [JsonProperty("FID")]
         public string FID { get; set; }
 
-        public LogEntryType EntryType { get; } = LogEntryType.ClearSavedGame;
-
         public override void ProcessEvent(ref Commander Commander)
         {
             Commander.Name = Name;
             Commander.FID = FID;
+
+            EntryType = LogEntryType.ClearSavedGame;
         }
     }
 }
