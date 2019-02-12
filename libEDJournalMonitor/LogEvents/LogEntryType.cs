@@ -6,10 +6,30 @@ namespace libEDJournalMonitor
     /// </summary>
     public enum LogEntryType
     {
-        // Startup
         None,
-        Cargo,
+
+        // x.json updates
+        Status,
+        Market,
+        ModulesInfo,
+        Shipyard,
+
+        // Startup
+        Cargo,              // also for cargo.json updates
         ClearSavedGame,
         Commander,
+        Loadout,
+        Materials,
+        Missions,
+        NewCommander,
+        LoadGame,
+        Passengers,
+        Powerplay,
+        Progress,
+        Rank,
+        Reputation,
+        Statistics,
+
+        // Travel
     }
 }

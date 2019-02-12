@@ -2,7 +2,7 @@
 
 namespace libEDJournalMonitor
 {
-    sealed internal class EDLogClearSavedGame : EDLogEntry
+    sealed public class EDLogClearSavedGame : EDLogEntry
     {
 
         [JsonProperty("Name")]

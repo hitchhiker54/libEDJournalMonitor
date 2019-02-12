@@ -16,7 +16,7 @@ namespace libEDJournalMonitor
         public long? MissionID { get; internal set; }
     }
 
-    sealed internal class EDLogCargo : EDLogEntry
+    sealed public class EDLogCargo : EDLogEntry
     {
         [JsonProperty("Vessel")]
         public string Vessel { get; set; }

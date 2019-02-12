@@ -4,14 +4,14 @@ using System.Diagnostics;
 
 namespace libEDJournalMonitor
 {
-    internal class EDLogEntry : IEDLog
+    public class EDLogEntry : IEDLog
     {
         [JsonProperty("timestamp")]
         public string Timestamp { get; set; }
         [JsonProperty("event")]
         public string Event { get; set; }
 
-        public LogEntryType EntryType { get; internal set; } = LogEntryType.None;
+        public LogEntryType EntryType { get; set; } = LogEntryType.None;
 
         public virtual void ProcessEvent(ref Commander commander)
         {

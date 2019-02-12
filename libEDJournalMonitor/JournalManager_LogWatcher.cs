@@ -23,7 +23,7 @@ namespace libEDJournalMonitor
                 currentLogLine = 0;
                 lastLogLine = logLines.Count;
 
-                ParseJournal();
+                ParseJournal(false);
 
                 logWatcher = new FileSystemWatcher
                 {
@@ -52,7 +52,7 @@ namespace libEDJournalMonitor
             }
         }
 
-        private void ParseJournal()
+        private void ParseJournal(bool newEntry)
         {
             EDLogEntry logEntry = new EDLogEntry();
 
@@ -60,9 +60,6 @@ namespace libEDJournalMonitor
             {
                 string entry = logLines.ElementAt(i);
                 logEntry = JsonConvert.DeserializeObject<EDLogEntry>(entry);
-
-                //test
-                EmitLogEvent(LogEntryType.None, logEntry.Event, logEntry.GetDateTime());
 
                 switch (logEntry.Event)
                 {
@@ -72,7 +69,7 @@ namespace libEDJournalMonitor
                             edLogCargo = JsonConvert.DeserializeObject<EDLogCargo>(entry);
 
                             edLogCargo.ProcessEvent(ref Commander);
-                            //EmitLogEvent(edLogCargo.EntryType, edLogCargo.Event, edLogCargo.GetDateTime());
+                            logEntry.EntryType = LogEntryType.Cargo;
                         }
                         break;
                     case "ClearSavedGame":
@@ -81,7 +78,7 @@ namespace libEDJournalMonitor
                             edLogClearSavedGame = JsonConvert.DeserializeObject<EDLogClearSavedGame>(entry);
 
                             edLogClearSavedGame.ProcessEvent(ref Commander);
-                            //EmitLogEvent(edLogClearSavedGame.EntryType, edLogClearSavedGame.Event, edLogClearSavedGame.GetDateTime());
+                            logEntry.EntryType = LogEntryType.ClearSavedGame;
                         }
                         break;
                     case "Commander":
@@ -90,10 +87,12 @@ namespace libEDJournalMonitor
                             edLogCommander = JsonConvert.DeserializeObject<EDLogCommander>(entry);
 
                             edLogCommander.ProcessEvent(ref Commander);
-                            //EmitLogEvent(edLogCommander.EntryType, edLogCommander.Event, edLogCommander.GetDateTime());
+                            logEntry.EntryType = LogEntryType.Commander;
                         }
                         break;
                 }
+
+                if (newEntry) EmitLogEvent(logEntry.EntryType, logEntry.Event, logEntry.GetDateTime());
             }
         }
 
@@ -120,7 +119,7 @@ namespace libEDJournalMonitor
                 }
             }
 
-            ParseJournal();
+            ParseJournal(true);
         }
 
         private bool LoadLog()

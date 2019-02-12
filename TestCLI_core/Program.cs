@@ -10,8 +10,9 @@ namespace TestCLI_core
             Console.WriteLine("libEDJournalMonitor CLI Test");
 
             JournalManager journalManager = new JournalManager();
-            //journalManager.RaiseJournalEvent += LogEvent;
             journalManager.RaiseJournalEvent += new JournalEventHandler(LogEvent);
+
+            journalManager.Start();
 
             Console.ReadLine();
 

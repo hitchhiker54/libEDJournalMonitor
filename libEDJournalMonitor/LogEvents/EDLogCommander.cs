@@ -2,7 +2,7 @@
 
 namespace libEDJournalMonitor
 {
-    sealed internal class EDLogCommander : EDLogEntry
+    sealed public class EDLogCommander : EDLogEntry
     {
         [JsonProperty("Name")]
         public string Name { get; set; }
