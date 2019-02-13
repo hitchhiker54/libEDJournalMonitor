@@ -10,18 +10,18 @@ namespace libEDJournalMonitor
         public string Timestamp { get; set; }
         [JsonProperty("event")]
         public string Event { get; set; }
-
-        public LogEntryType EntryType { get; set; } = LogEntryType.None;
+        public string RawJson { get; set; }
 
         public virtual void ProcessEvent(ref Commander commander)
         {
 
         }
 
-        /// <summary>
-        /// Translate the string timestamp to DateTime value
-        /// </summary>
-        /// <returns> DateTime value for entry timestamp or DateTime.MinValue</returns>
+        public string GetName()
+        {
+            return Event;
+        }
+
         public DateTime GetDateTime()
         {
             DateTime dateTime = DateTime.MinValue;
@@ -37,6 +37,11 @@ namespace libEDJournalMonitor
             }
 
             return dateTime;
+        }
+
+        public string GetRawJson()
+        {
+            return RawJson;
         }
     }
 }

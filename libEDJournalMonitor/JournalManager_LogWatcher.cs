@@ -60,6 +60,7 @@ namespace libEDJournalMonitor
             {
                 string entry = logLines.ElementAt(i);
                 logEntry = JsonConvert.DeserializeObject<EDLogEntry>(entry);
+                logEntry.RawJson = entry;
 
                 switch (logEntry.Event)
                 {
@@ -69,7 +70,6 @@ namespace libEDJournalMonitor
                             edLogCargo = JsonConvert.DeserializeObject<EDLogCargo>(entry);
 
                             edLogCargo.ProcessEvent(ref Commander);
-                            logEntry.EntryType = LogEntryType.Cargo;
                         }
                         break;
                     case "ClearSavedGame":
@@ -78,7 +78,6 @@ namespace libEDJournalMonitor
                             edLogClearSavedGame = JsonConvert.DeserializeObject<EDLogClearSavedGame>(entry);
 
                             edLogClearSavedGame.ProcessEvent(ref Commander);
-                            logEntry.EntryType = LogEntryType.ClearSavedGame;
                         }
                         break;
                     case "Commander":
@@ -87,12 +86,12 @@ namespace libEDJournalMonitor
                             edLogCommander = JsonConvert.DeserializeObject<EDLogCommander>(entry);
 
                             edLogCommander.ProcessEvent(ref Commander);
-                            logEntry.EntryType = LogEntryType.Commander;
                         }
                         break;
                 }
 
-                if (newEntry) EmitLogEvent(logEntry.EntryType, logEntry.Event, logEntry.GetDateTime());
+                // don't emit events for old logs, just keep the data
+                if (newEntry) EmitLogEvent(logEntry);
             }
         }
 

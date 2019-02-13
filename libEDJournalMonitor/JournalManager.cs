@@ -44,13 +44,11 @@ namespace libEDJournalMonitor
             StartStatusWatcher();
         }
 
-        private void EmitLogEvent(LogEntryType logEntryType, string eventName, DateTime dateTime)
+        private void EmitLogEvent(IEDLog log)
         {
             JournalEventArgs args = new JournalEventArgs
             {
-                LogEntryType = logEntryType,
-                Event = eventName,
-                Timestamp = dateTime
+                Log = log,
             };
             OnJournalEvent(args);
         }
@@ -65,9 +63,7 @@ namespace libEDJournalMonitor
 
     public class JournalEventArgs : EventArgs
     {
-        public LogEntryType LogEntryType { get; internal set; }
-        public string Event { get; internal set; }
-        public DateTime Timestamp { get; internal set; }
+        public IEDLog Log { get; internal set; }
     }
 
     public delegate void JournalEventHandler(object sender, JournalEventArgs e);

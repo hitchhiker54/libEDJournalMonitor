@@ -2,18 +2,18 @@
 
 namespace libEDJournalMonitor
 {
-    public class CargoItem
+    public class EDLogCargoItem
     {
         [JsonProperty("Name")]
-        public string Name { get; internal set; }
+        public string Name { get; set; }
         [JsonProperty("Name_Localised")]
-        public string Name_Localised { get; internal set; }
+        public string Name_Localised { get; set; }
         [JsonProperty("Count")]
-        public int Count { get; internal set; }
+        public int Count { get; set; }
         [JsonProperty("Stolen")]
-        public int Stolen { get; internal set; }
+        public int Stolen { get; set; }
         [JsonProperty("MissionID")]
-        public long? MissionID { get; internal set; }
+        public long? MissionID { get; set; }
     }
 
     sealed public class EDLogCargo : EDLogEntry
@@ -23,7 +23,7 @@ namespace libEDJournalMonitor
         [JsonProperty("Count")]
         public int? Count { get; set; }
         [JsonProperty("Inventory")]
-        public CargoItem[] Inventory { get; set; }
+        public EDLogCargoItem[] Inventory { get; set; }
 
         public override void ProcessEvent(ref Commander Commander)
         {
@@ -33,8 +33,6 @@ namespace libEDJournalMonitor
             {
                 Commander.Inventory = Inventory;
             }
-
-            EntryType = LogEntryType.Cargo;
         }
     }
 }

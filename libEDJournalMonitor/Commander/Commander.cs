@@ -26,7 +26,7 @@ namespace libEDJournalMonitor
         public bool? Hot { get; internal set; }
         public float? Cargo { get; internal set; }
         public float CargoSpace { get; internal set; } = 0;
-        public CargoItem[] Inventory { get; internal set; }
+        public EDLogCargoItem[] Inventory { get; internal set; }
 
         public StarSystem CurrentSystem { get; internal set; } = new StarSystem();
         public bool NearBody { get; internal set; }      // my own addition for checking correct body name

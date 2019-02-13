@@ -21,7 +21,12 @@ namespace TestCLI_core
 
         static void LogEvent(object sender, JournalEventArgs e)
         {
-            Console.WriteLine($"The event {e.Event} was read at {e.Timestamp}.");
+            //Console.WriteLine($"The event {e.Log.GetName()} was read at {e.Log.GetDateTime()}.");
+
+            if (e.Log.GetName() == "Commander")
+            {
+                Console.WriteLine($"{e.Log.GetRawJson()}");
+            }
         }
     }
 }

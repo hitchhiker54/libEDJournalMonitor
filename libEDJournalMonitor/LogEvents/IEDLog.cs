@@ -5,9 +5,12 @@ namespace libEDJournalMonitor
     /// <summary>
     /// Common interface for log, status, cargo and module etc file entries
     /// </summary>
-    interface IEDLog
+    public interface IEDLog
     {
         void ProcessEvent(ref Commander commander);
+
+        string GetName();
         DateTime GetDateTime();
+        string GetRawJson();
     }
 }

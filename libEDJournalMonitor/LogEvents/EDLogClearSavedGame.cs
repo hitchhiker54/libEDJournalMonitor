@@ -14,8 +14,6 @@ namespace libEDJournalMonitor
         {
             Commander.Name = Name;
             Commander.FID = FID;
-
-            EntryType = LogEntryType.ClearSavedGame;
         }
     }
 }
