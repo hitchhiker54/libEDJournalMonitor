@@ -21,3 +21,5 @@ Individual log events can be read and accessed through the above event handler :
             {
                 Console.WriteLine($"{e.Log.GetRawJson()}");
             }
+
+All data read from logs can be accessed at any time through the journalManager.Commander class.
