@@ -22,24 +22,20 @@ namespace libEDJournalMonitor
         // default for testing
         public JournalManager()
         {
-            //Commander = new Commander();
-            //JournalDirectory = $"{Environment.GetEnvironmentVariable("USERPROFILE")}\\Saved Games\\Frontier Developments\\Elite Dangerous";
-            //StartLogWatcher();
-            //StartStatusWatcher();
+            Commander = new Commander();
         }
 
-        public JournalManager(string JournalDirectory)
-        {
-            //Commander = new Commander();
-            //this.JournalDirectory = JournalDirectory;
-            //StartLogWatcher();
-            //StartStatusWatcher();
-        }
 
         public void Start()
         {
-            Commander = new Commander();
             JournalDirectory = $"{Environment.GetEnvironmentVariable("USERPROFILE")}\\Saved Games\\Frontier Developments\\Elite Dangerous";
+            StartLogWatcher();
+            StartStatusWatcher();
+        }
+
+        public void Start(string JournalDirectory)
+        {
+            this.JournalDirectory = JournalDirectory;
             StartLogWatcher();
             StartStatusWatcher();
         }

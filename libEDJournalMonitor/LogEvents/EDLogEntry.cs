@@ -17,7 +17,7 @@ namespace libEDJournalMonitor
 
         }
 
-        public string GetName()
+        public string GetEventName()
         {
             return Event;
         }

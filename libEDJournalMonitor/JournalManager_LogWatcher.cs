@@ -88,6 +88,30 @@ namespace libEDJournalMonitor
                             edLogCommander.ProcessEvent(ref Commander);
                         }
                         break;
+                    case "Loadout":
+                        {
+                            EDLogLoadout edLogLoadout = new EDLogLoadout();
+                            edLogLoadout = JsonConvert.DeserializeObject<EDLogLoadout>(entry);
+
+                            edLogLoadout.ProcessEvent(ref Commander);
+                        }
+                        break;
+                    case "Materials":
+                        {
+                            EDLogMaterials edLogMaterials = new EDLogMaterials();
+                            edLogMaterials = JsonConvert.DeserializeObject<EDLogMaterials>(entry);
+
+                            edLogMaterials.ProcessEvent(ref Commander);
+                        }
+                        break;
+                    case "Missions":
+                        {
+                            EDLogMissions edLogMissions = new EDLogMissions();
+                            edLogMissions = JsonConvert.DeserializeObject<EDLogMissions>(entry);
+
+                            edLogMissions.ProcessEvent(ref Commander);
+                        }
+                        break;
                 }
 
                 // don't emit events for old logs, just keep the data

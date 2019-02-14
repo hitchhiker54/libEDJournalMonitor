@@ -9,7 +9,7 @@ namespace libEDJournalMonitor
     {
         void ProcessEvent(ref Commander commander);
 
-        string GetName();
+        string GetEventName();
         DateTime GetDateTime();
         string GetRawJson();
     }
