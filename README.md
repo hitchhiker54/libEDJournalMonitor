@@ -13,7 +13,7 @@ Example startup :
 
             journalManager.RaiseJournalEvent -= LogEvent;
 
-Individual log events can be read and accessed through the above event handler :
+Individual log events can be accessed through the above event handler :
 
             Console.WriteLine($"The event {e.Log.GetEventName()} dated {e.Log.GetDateTime()}.");
 
