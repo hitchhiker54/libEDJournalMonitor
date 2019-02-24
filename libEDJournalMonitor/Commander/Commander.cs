@@ -8,6 +8,7 @@ namespace libEDJournalMonitor
     {
         public string Name { get; internal set; }
         public string FID { get; internal set; }
+        public string Package { get; set; }
         public long Credits { get; internal set; }
         public long Loan { get; internal set; }
         public bool? Wanted { get; internal set; }
